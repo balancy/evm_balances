@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "evm-balances"
+version = "0.1.0"
+description = "App to check evm balances of a wallet"
+authors = ["balancy <balancy@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+web3 = "^6.20.2"
+environs = "^11.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+lint.select = ["ALL"]
+line-length = 79
+lint.ignore = [
+  "G004",
+  "ANN401",
+  "D105",
+  "D203",
+  "D213",
+  "ARG002",
+  "RUF012",
+  "DJ001",
+  "PGH003",
+  "RUF001",
+  "S101",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 5
+
+[tool.black]
+line-length = 79
+exclude = '(\.git|\.cache|\.mypy_cache|\.pytest_cache|\.tox|\.venv|\.idea|__pycache__|migrations|htmlcov)'
