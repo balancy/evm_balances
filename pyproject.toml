@@ -10,6 +10,8 @@ readme = "README.md"
 python = "^3.12"
 web3 = "^6.20.2"
 environs = "^11.0.0"
+litestar = "^2.10.0"
+uvicorn = "^0.30.6"
 
 
 [tool.poetry.group.dev.dependencies]
