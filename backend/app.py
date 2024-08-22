@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from decimal import Decimal
+from decimal import Decimal
 
 from litestar import Litestar, get
+from litestar.config.cors import CORSConfig
 
 from services import read_balance
+
+cors_config = CORSConfig(allow_origins=["*"])
 
 
 @get("/")
@@ -24,4 +24,4 @@ async def get_balance(address: str) -> dict[str, int | Decimal]:
     return {"balance": read_balance(address)}
 
 
-app = Litestar([index, get_balance])
+app = Litestar(route_handlers=[index, get_balance], cors_config=cors_config)

@@ -2,16 +2,11 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-from environs import Env
-
-if TYPE_CHECKING:
-    from decimal import Decimal
-
 import logging
+from decimal import Decimal
 
 import web3
+from environs import Env
 
 PUBLIC_RPC_URL = "https://cloudflare-eth.com"
 

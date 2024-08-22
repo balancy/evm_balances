@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "evm-balances"
+name = "evm_balances"
 version = "0.1.0"
 description = "App to check evm balances of a wallet"
 authors = ["balancy <balancy@gmail.com>"]
 license = "MIT"
-readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -36,6 +36,7 @@ lint.ignore = [
   "PGH003",
   "RUF001",
   "S101",
+  "TCH003",
 ]
 
 [tool.ruff.lint.mccabe]
