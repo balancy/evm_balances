@@ -1,0 +1,18 @@
+repos:
+  - repo: local
+    hooks:
+      - id: backend-poetry-export
+        name: Export Poetry dependencies for backend
+        entry: sh -c 'cd backend && poetry export -f requirements.txt --output requirements.txt --without-hashes'
+        language: system
+        files: pyproject.toml
+      - id: backend-ruff
+        name: Run ruff for backend
+        entry: ruff check backend
+        language: system
+        pass_filenames: false
+      - id: backend-black-check
+        name: Check code formatting with black for backend
+        entry: black --check backend
+        language: system
+        pass_filenames: false
