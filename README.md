@@ -12,7 +12,11 @@ git clone https://github.com/balancy/evm_balances.git
 ```
 
 ## Run locally
+You should have docker-compose installed on your computer.
 
 ```sh
-docker-compose ...
+make
 ```
+
+## Use
+The app will be available on http://localhost:5173/
