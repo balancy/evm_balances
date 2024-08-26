@@ -4,7 +4,12 @@ __pycache__
 .venv
 .vscode
 .ruff_cache
+*.log
 
 # frontend
 node_modules
 .svelte-kit
+.npmrc
+build/
+dist/
+.vite

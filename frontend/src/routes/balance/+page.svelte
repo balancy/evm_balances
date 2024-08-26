@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
+  import { backendUrl } from "../../config.js";
 
   export let address = "";
 
@@ -10,7 +11,7 @@
     if (!address) {
       return;
     }
-    const response = await fetch(`http://localhost:8000/balances/${address}`);
+    const response = await fetch(`${backendUrl}balances/${address}`);
     const data = await response.json();
     balance.set(data.balance.toString());
   };

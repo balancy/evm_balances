@@ -1,11 +1,13 @@
 <script>
   import { onMount } from "svelte";
+  import { backendUrl } from "../config.js";
+
   let greeting = "Loading...";
 
   onMount(async () => {
     console.log("Fetching data from server...");
     try {
-      const response = await fetch("http://localhost:8000/");
+      const response = await fetch(backendUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
