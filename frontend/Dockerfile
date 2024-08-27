@@ -11,6 +11,9 @@ COPY . .
 # Build stage
 FROM base AS build
 
+ARG HOST
+ENV VITE_BACKEND_URL=${HOST}:8000
+
 RUN yarn build
 
 # Production stage
@@ -27,6 +30,9 @@ CMD ["node", "build/index.js"]
 
 # Development stage
 FROM base AS development
+
+ARG HOST
+ENV VITE_BACKEND_URL=${HOST}:8000
 
 EXPOSE 5173
 CMD ["yarn", "dev"]

@@ -10,7 +10,9 @@ from litestar.config.cors import CORSConfig
 from services import read_balance
 
 cors_config = CORSConfig(
-    allow_origins=["*"],
+    allow_origins=[
+        "*",
+    ],
 )
 
 

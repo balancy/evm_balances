@@ -14,9 +14,25 @@ git clone https://github.com/balancy/evm_balances.git
 ## Run locally
 You should have docker-compose installed on your computer.
 
+Run docker-compose by:
 ```sh
 make
 ```
 
-## Use
+## Run on server
+Define the file with environment variables
+
+```sh
+cp .env.example .env
+```
+
+Define your host inside `.env`
+- HOST=your_hostname
+
+Run docker-compose by:
+```sh
+make prod
+```
+
+## Use in dev version
 The app will be available on http://localhost:5173/

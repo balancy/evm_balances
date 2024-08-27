@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: backend-poetry-export
         name: Export Poetry dependencies for backend
-        entry: sh -c 'cd backend && poetry export -f requirements.txt --output requirements.txt --without-hashes'
+        entry: sh -c 'cd backend && uv pip compile pyproject.toml -o requirements.txt > /dev/null'
         language: system
         files: pyproject.toml
       - id: backend-ruff

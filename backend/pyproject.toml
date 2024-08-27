@@ -1,26 +1,18 @@
-[tool.poetry]
-name = "evm_balances"
+[project]
+name = "backend"
 version = "0.1.0"
-description = "App to check evm balances of a wallet"
-authors = ["balancy <balancy@gmail.com>"]
-license = "MIT"
-package-mode = false
+description = "App to check balances of an evm-compatible wallet"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "litestar>=2.11.0",
+  "web3>=7.1.0",
+  "environs>=11.0.0",
+  "uvicorn>=0.30.6",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-web3 = "^6.20.2"
-environs = "^11.0.0"
-litestar = "^2.10.0"
-uvicorn = "^0.30.6"
-
-
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.6.1"
-pre-commit = "^3.8.0"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv]
+dev-dependencies = ["black>=24.8.0", "ruff>=0.6.2", "pre-commit>=3.8.0"]
 
 [tool.ruff]
 lint.select = ["ALL"]
@@ -45,4 +37,3 @@ max-complexity = 5
 
 [tool.black]
 line-length = 79
-exclude = '(\.git|\.cache|\.mypy_cache|\.pytest_cache|\.tox|\.venv|\.idea|__pycache__|migrations|htmlcov)'

@@ -11,7 +11,7 @@
     if (!address) {
       return;
     }
-    const response = await fetch(`${backendUrl}balances/${address}`);
+    const response = await fetch(`${backendUrl}/balances/${address}`);
     const data = await response.json();
     balance.set(data.balance.toString());
   };

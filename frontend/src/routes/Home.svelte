@@ -6,12 +6,13 @@
 
   onMount(async () => {
     console.log("Fetching data from server...");
+    console.log("Backend URL:", backendUrl);
     try {
       const response = await fetch(backendUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-      const data = await response.text(); // or response.json() if the API returns JSON
+      const data = await response.text();
       console.log("Response data:", data);
       greeting = data;
     } catch (error) {
