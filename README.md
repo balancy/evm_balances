@@ -1,4 +1,5 @@
 # App to check balances of EVM-compatible wallet
+![Docker build workflow](https://github.com/balancy/evm_balances/actions/workflows/docker-publish.yml/badge.svg)
 
 Web-app helps to check balances of a wallet in different evm-compatible networks.
 It's build using litestar python framework for backend and svelte.js for frontend.
