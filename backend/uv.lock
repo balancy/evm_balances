@@ -104,6 +104,39 @@ wheels = [
 ]
 
 [[package]]
+name = "backend"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "environs" },
+    { name = "litestar" },
+    { name = "uvicorn" },
+    { name = "web3" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "black" },
+    { name = "pre-commit" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "environs", specifier = ">=11.0.0" },
+    { name = "litestar", specifier = ">=2.11.0" },
+    { name = "uvicorn", specifier = ">=0.30.6" },
+    { name = "web3", specifier = ">=7.1.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "black", specifier = ">=24.8.0" },
+    { name = "pre-commit", specifier = ">=3.8.0" },
+    { name = "ruff", specifier = ">=0.6.2" },
+]
+
+[[package]]
 name = "bitarray"
 version = "2.9.2"
 source = { registry = "https://pypi.org/simple" }
@@ -987,39 +1020,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/43/6d/fa469ae21497ddc8bc93e5877702dca7cb8f911e337aca7452b5724f1bb6/urllib3-2.2.2.tar.gz", hash = "sha256:dd505485549a7a552833da5e6063639d0d177c04f23bc3864e41e5dc5f612168", size = 292266 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ca/1c/89ffc63a9605b583d5df2be791a27bc1a42b7c32bab68d3c8f2f73a98cd4/urllib3-2.2.2-py3-none-any.whl", hash = "sha256:a448b2f64d686155468037e1ace9f2d2199776e17f0a46610480d311f73e3472", size = 121444 },
-]
-
-[[package]]
-name = "uv-backend"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "environs" },
-    { name = "litestar" },
-    { name = "uvicorn" },
-    { name = "web3" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "black" },
-    { name = "pre-commit" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "environs", specifier = ">=11.0.0" },
-    { name = "litestar", specifier = ">=2.11.0" },
-    { name = "uvicorn", specifier = ">=0.30.6" },
-    { name = "web3", specifier = ">=7.1.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "black", specifier = ">=24.8.0" },
-    { name = "pre-commit", specifier = ">=3.8.0" },
-    { name = "ruff", specifier = ">=0.6.2" },
 ]
 
 [[package]]
