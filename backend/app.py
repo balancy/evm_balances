@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from typing import Any
 
 from litestar import Litestar, get, status_codes
@@ -36,13 +37,14 @@ async def get_balance(
 
     client = WalletBalanceClient(network=network)
 
-    exchange_rate = await client.fetch_rate()
-    wallet_balance = client.read_balance(address=address)
+    balance_task = client.read_balance(address=address)
+    rate_task = client.fetch_rate()
 
-    return {
-        "balance": wallet_balance,
-        "rate": exchange_rate,
-    }, status_codes.HTTP_200_OK
+    results = await asyncio.gather(balance_task, rate_task)
+
+    balance, rate = results
+
+    return {"balance": balance, "rate": rate}, status_codes.HTTP_200_OK
 
 
 app = Litestar(route_handlers=[index, get_balance], cors_config=cors_config)

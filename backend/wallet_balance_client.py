@@ -6,8 +6,8 @@ import asyncio
 from typing import TYPE_CHECKING
 
 import httpx
-import web3
 from environs import Env
+from web3 import AsyncWeb3
 
 from app_logger import get_logger
 from constants import NETWORKS
@@ -47,28 +47,43 @@ class WalletBalanceClient:
         data = response.json()
         return data[self._native_token][to_currency]
 
-    def read_balance(self, address: str) -> float:
+    async def read_balance(self, address: str) -> float:
         """Read wallet balance."""
-        w3 = web3.Web3(web3.HTTPProvider(self._url))
+        w3 = AsyncWeb3(AsyncWeb3.AsyncHTTPProvider(self._url))
 
-        if not w3.is_connected():
+        if not await w3.is_connected():
             message = f"Failed to connect to {self._url}"
             raise ConnectionError(message)
 
         checksum_address = w3.to_checksum_address(address)
-        balance_wei = w3.eth.get_balance(checksum_address)
+        balance_wei = await w3.eth.get_balance(checksum_address)
 
         return float(w3.from_wei(balance_wei, "ether"))
 
 
-async def main(client: WalletBalanceClient, logger: logging.Logger) -> None:
+async def _fetch_rate(
+    client: WalletBalanceClient,
+    logger: logging.Logger,
+) -> None:
     """Async function to check the exchange rate."""
     rate = await client.fetch_rate()
 
     logger.info(f"Exchange rate is {rate}")
 
 
-if __name__ == "__main__":
+async def _read_balance(
+    client: WalletBalanceClient,
+    address: str,
+    logger: logging.Logger,
+) -> None:
+    """Async function to read the wallet balance."""
+    balance = await client.read_balance(address)
+
+    logger.info(f"Balance of {address} is {balance:.2f} ETH")
+
+
+async def main() -> None:
+    """Async main function."""
     env = Env()
     env.read_env()
 
@@ -81,8 +96,11 @@ if __name__ == "__main__":
 
     client = WalletBalanceClient()
 
-    balance = client.read_balance(address)
+    rate_task = _fetch_rate(logger=logger, client=client)
+    balance_task = _read_balance(logger=logger, client=client, address=address)
 
-    logger.info(f"Balance of {address} is {balance:.2f} ETH")
+    await asyncio.gather(balance_task, rate_task)
 
-    asyncio.run(main(logger=logger, client=client))
+
+if __name__ == "__main__":
+    asyncio.run(main())
