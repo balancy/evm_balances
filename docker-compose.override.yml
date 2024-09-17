@@ -15,4 +15,4 @@ services:
       - ./backend:/app
     environment:
       - UVICORN_LOG_LEVEL=debug
-    command: uvicorn app:app --reload
+    command: uv run uvicorn app:app --reload

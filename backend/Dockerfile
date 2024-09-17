@@ -1,12 +1,10 @@
-FROM python:3.12-slim
-
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITEBYTECODE=1
+FROM python:3.12-slim AS builder
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY pyproject.toml uv.lock ./
 
-RUN pip install -r requirements.txt
+RUN uv sync --frozen
 
 COPY . .
