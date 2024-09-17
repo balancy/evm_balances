@@ -44,7 +44,7 @@ async def get_balance(
 
     balance, rate = results
 
-    return {"balance": balance, "rate": rate}, status_codes.HTTP_200_OK
+    return {"balance": round(balance * rate, 2)}, status_codes.HTTP_200_OK
 
 
 app = Litestar(route_handlers=[index, get_balance], cors_config=cors_config)

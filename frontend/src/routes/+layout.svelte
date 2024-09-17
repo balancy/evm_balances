@@ -1,6 +1,6 @@
 <script>
   import "../app.css";
-  import Header from "./Header.svelte";
+  import Header from "../components/Header.svelte";
 </script>
 
 <div class="app">
