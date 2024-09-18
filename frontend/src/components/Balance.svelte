@@ -1,4 +1,3 @@
-<!-- src/components/Balance.svelte -->
 <script>
   import { onMount } from "svelte";
   import { writable } from "svelte/store";
@@ -8,6 +7,7 @@
   export let network = "ETH";
 
   const balance = writable(null);
+  const networks = ["ETH", "BSC", "MATIC", "ARB", "OP", "AVAX", "MNT"];
 
   const fetchBalance = async () => {
     if (!address || !network) {
@@ -49,12 +49,16 @@
       bind:value={address}
       placeholder="Enter Wallet Address"
     />
-    <input type="text" bind:value={network} placeholder="Enter Network" />
+    <select bind:value={network}>
+      {#each networks as net}
+        <option value={net}>{net}</option>
+      {/each}
+    </select>
     <button on:click={fetchBalance}>Get Balance</button>
   </div>
   <p>
     Balance: {#if $balance}
-      {$balance}
+      {$balance} usdt
     {/if}
   </p>
 </div>

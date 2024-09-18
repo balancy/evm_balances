@@ -24,7 +24,7 @@ async def index() -> str:
     return "Hello, guest!"
 
 
-@get("/balances", sync_to_thread=True)
+@get("/balances")
 async def get_balance(
     network: str,
     address: str,
